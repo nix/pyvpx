@@ -13,7 +13,7 @@
 LIBVPX=/xtra/libvpx
 LIBVPX_SO=$(LIBVPX)/x86_build/libvpx.so.0.9.6
 
-HEADERS = vpx_image.h vpx_codec.h vp8.h vp8cx.h vp8dx.h vp8e.h vpx_encoder.h vpx_decoder.h
+HEADERS = vpx_image.h vpx_codec.h vp8cx.h vp8dx.h vpx_encoder.h vpx_decoder.h
 
 ABSHEADERS = $(patsubst %,$(LIBVPX)/vpx/%,$(HEADERS))
 
