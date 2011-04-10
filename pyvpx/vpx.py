@@ -112,15 +112,37 @@ class VpxEncodeStream(object):
         self.interface = vpx_codec_vp8_cx()
         print 'codec',vpx_codec_iface_name(self.interface)
 
-        self.passi = 0
-        self.npasses = 0
+        self.passi = None
+        self.npasses = 1
+
         # statistics data for two-pass encoding
         self.stats = []
 
         self.vpxconfig()
+
+    def start_pass(self, passi):
+        """must call this before encoding frames"""
+
+        self.passi = passi
+
+        if self.npasses > 1:
+            if self.passi == 0:
+                self.cfg.g_pass = VPX_RC_FIRST_PASS
+            else:
+                self.cfg.g_pass = VPX_RC_LAST_PASS
+                # XXX self.stats is an array of bytestrings
+                
+                statstr = ''.join(self.stats)
+                vpxstats = vpx_fixed_buf_t()
+                vpxstats.buf = cast(c_char_p(statstr), c_void_p)
+                vpxstats.sz = len(statstr)
+
+                self.cfg.rc_twopass_stats_in = vpxstats
+        else:
+            self.cfg.g_pass = VPX_RC_ONE_PASS
     
         self.codec = vpx_codec_ctx_t()
-    
+
         checkvpxres(vpx_codec_enc_init(self.codec, self.interface, self.cfg, 0),
                     'vpx_codec_enc_init')
 
@@ -136,6 +158,7 @@ class VpxEncodeStream(object):
         self.framei = 0
         writing = 1
         raw = None
+
 
     def encpng(self, filename):
 
@@ -236,22 +259,6 @@ class VpxEncodeStream(object):
         print 'bitrate', cfg.rc_target_bitrate
         print 'bpppf', bits_per_pixel_per_frame
         
-
-        if self.npasses:
-            if self.passi == 0:
-                cfg.g_pass = VPX_RC_FIRST_PASS
-            else:
-                cfg.g_pass = VPX_RC_LAST_PASS
-                # XXX self.stats is an array of bytestrings
-                
-                statstr = ''.join(self.stats)
-                vpxstats = vpx_fixed_buf_t()
-                vpxstats.sz = len(statstr)
-                # get ptr from string/buffer
-                vpxstats.buf = XXX
-
-                cfg.rc_twopass_stats_in = vpxstats
-    
         self.cfg = cfg
 
     def set_ref_frame(self, img):
@@ -371,6 +378,12 @@ if __name__ == '__main__':
 
     from glob import glob
     #for fn in glob('/xtra/run/download/2011-03-24T12Z/gfsmap/*/1/0/0.png'):
-    for fn in sorted(glob('/x/pyvpx/satanim/*.png')):
-        enc.encpng(fn)
+    fns = list(sorted(glob('/x/pyvpx/satanim/*.png')))
 
+    enc.npasses = 1
+
+    for passi in range(enc.npasses):
+        enc.start_pass(passi)
+        print '-'*30,'PASS',passi+1,'/',enc.npasses
+        for fn in fns:
+            enc.encpng(fn)
