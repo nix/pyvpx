@@ -36,6 +36,11 @@ import operator
 buf_from_ptr = pythonapi.PyBuffer_FromReadWriteMemory
 buf_from_ptr.restype = py_object
 
+bytes_from_ptr = pythonapi.PyString_FromStringAndSize
+if getattr(pythonapi, 'PyBytes_FromStringAndSize', None):
+    bytes_from_ptr = pythonapi.PyBytes_FromStringAndSize
+bytes_from_ptr.restype = py_object
+
 
 def array_from_ptr(ptr, shape):
     # ptr is a ctypes.LP_c_ubyte
@@ -58,8 +63,8 @@ def imgplanes(raw, nplanes):
     """
     raw = raw.contents
 
-    nx = raw.w
-    ny = raw.h
+    nx = raw.d_w
+    ny = raw.d_h
     hnx = (nx + 1)//2
     hny = (ny + 1)//2
 
@@ -89,7 +94,13 @@ def imgplanes(raw, nplanes):
 def checkvpxres(res, s):
     """check the result of a vpx_codec_* function and throw an exception if not ok"""
     if not res: return
-    raise Exception("%s: %s" % (s,vpx_codec_err_to_string(res)))
+
+    #errstr = vpx_codec_error(ctx);
+    #detail = vpx_codec_error_detail(ctx);
+
+    raise Exception("%s: %s" % (s, vpx_codec_err_to_string(res)))
+
+
 
 
 class VpxEncodeStream(object):
@@ -100,6 +111,11 @@ class VpxEncodeStream(object):
 
         self.interface = vpx_codec_vp8_cx()
         print 'codec',vpx_codec_iface_name(self.interface)
+
+        self.passi = 0
+        self.npasses = 0
+        # statistics data for two-pass encoding
+        self.stats = []
 
         self.vpxconfig()
     
@@ -156,10 +172,11 @@ class VpxEncodeStream(object):
     def drain(self):
         """process output from the encoder
         """
+
         for pkt in self.iterpackets():
             fr = pkt.data.frame
 
-            print pkt.kind,
+            flag = ' '
 
             if pkt.kind == VPX_CODEC_CX_FRAME_PKT:
                 #write_frame_header(pkt)
@@ -174,30 +191,78 @@ class VpxEncodeStream(object):
                     buf = buf_from_ptr(fr.buf, fr.sz)
                     #print 'blen',len(buf), fr.sz
                     self.outfp.write(buf)
-                print ('K' if fr.flags & VPX_FRAME_IS_KEY
-                       else ' '),
+                if fr.flags & VPX_FRAME_IS_KEY:
+                    flag = 'K'
+
+                kind = 'F'
+
+            elif pkt.kind == VPX_CODEC_STATS_PKT:
+                pktstats = pkt.data.twopass_stats
+                buf = bytes_from_ptr(pktstats.buf, pktstats.sz)
+                self.stats.append(buf)
+
+                kind = 'S'
+
             else:
-                pass
-            print fr.sz
+                kind = '%d' % pkt.kind
+
+
+            print '%s %4d %s %10d' % (kind, self.framei, flag, fr.sz)
 
 
     def vpxconfig(self):
         cfg = vpx_codec_enc_cfg()
-    
+
         res = vpx_codec_enc_config_default(self.interface, cfg, 0)
         checkvpxres(res, 'vpx_codec_enc_config_default')
     
-        # start with the default target bitrate, and scale it
-        # to however many pixels we're using
+        #print 'default shape', (cfg.g_h, cfg.g_w)
+        #print 'default bitrate', cfg.rc_target_bitrate
+
+        fps = 30
+
+        # rc_target_bitrate is in kilobits per second
+        default_bits_per_pixel_per_frame = cfg.rc_target_bitrate * 1024.0 / (cfg.g_h * cfg.g_w) / fps
+
+        bits_per_pixel_per_frame = 0.2
+
         ny,nx = self.shape
-        scale = nx * ny / cfg.g_w / cfg.g_h
-        cfg.rc_target_bitrate *= scale
+        cfg.rc_target_bitrate = int(bits_per_pixel_per_frame * fps * nx * ny / 1024.0)
         cfg.g_w = nx
         cfg.g_h = ny
+
+
+        print 'shape', (cfg.g_h, cfg.g_w)
+        print 'bitrate', cfg.rc_target_bitrate
+        print 'bpppf', bits_per_pixel_per_frame
+        
+
+        if self.npasses:
+            if self.passi == 0:
+                cfg.g_pass = VPX_RC_FIRST_PASS
+            else:
+                cfg.g_pass = VPX_RC_LAST_PASS
+                # XXX self.stats is an array of bytestrings
+                
+                statstr = ''.join(self.stats)
+                vpxstats = vpx_fixed_buf_t()
+                vpxstats.sz = len(statstr)
+                # get ptr from string/buffer
+                vpxstats.buf = XXX
+
+                cfg.rc_twopass_stats_in = vpxstats
     
         self.cfg = cfg
 
-    
+    def set_ref_frame(self, img):
+        ref = vpx_ref_frame_t()
+        ref.frame_type = VP8_LAST_FRAME
+        ref.img = img
+
+        checkvpxres(vpx_codec_control(self.codec, VP8_SET_REFERENCE, ref))
+       
+        # XXX free
+
     def encframe(self, ysusvs):
         """send an uncompressed frame to the encoder
         """
@@ -219,6 +284,16 @@ class VpxEncodeStream(object):
         #print 'ENC'
 
         flags = 0
+
+        # force a keyframe every 8 frames
+        if not (self.framei & 0x7):
+            flags |= VPX_EFLAG_FORCE_KF
+        else:
+            flags &= ~VPX_EFLAG_FORCE_KF
+
+        # test - oddly seems to break things, all frames after
+        # the first are supercompressed
+        #flags |= VPX_EFLAG_FORCE_KF
 
         res = vpx_codec_encode(self.codec, self.frame, self.framei,
                              1, flags, VPX_DL_GOOD_QUALITY)
@@ -273,7 +348,7 @@ class VpxDecodeStream(object):
             img = vpx_codec_get_frame(self.codec, iter)
             if not img: break
 
-            print 'DEC'
+            #print 'DECODED', img
 
             # copy the arrays since they point into external storage
             arrs = [np.array(a) for a in imgplanes(img, 3)]
@@ -296,6 +371,6 @@ if __name__ == '__main__':
 
     from glob import glob
     #for fn in glob('/xtra/run/download/2011-03-24T12Z/gfsmap/*/1/0/0.png'):
-    for fn in glob('/xtra/pyvpx/satanim/*.png'):
+    for fn in sorted(glob('/x/pyvpx/satanim/*.png')):
         enc.encpng(fn)
 
