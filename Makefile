@@ -13,10 +13,12 @@
 LIBVPX=/xtra/libvpx
 LIBVPX_SO=$(LIBVPX)/x86_build/libvpx.so.0.9.6
 
-HEADERS = vpx_image.h vpx_codec.h vp8cx.h vp8dx.h vpx_encoder.h vpx_decoder.h
+VPXHEADERS = vpx_image.h vpx_codec.h vp8cx.h vp8dx.h vpx_encoder.h vpx_decoder.h
 
-ABSHEADERS = $(patsubst %,$(LIBVPX)/vpx/%,$(HEADERS))
+ABSHEADERS = $(patsubst %,$(LIBVPX)/vpx/%,$(VPXHEADERS))
 
+#MKVHEADERS = EbmlIDs.h EbmlWriter.h
+#ABSHEADERS += $(patsubst %,$(LIBVPX)/libmkv/%,$(MKVHEADERS))
 
 GENCTYPES = pyvpx/vpxwrap.py
 
