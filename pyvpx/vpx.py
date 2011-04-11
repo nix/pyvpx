@@ -19,8 +19,9 @@ from mapsaw.rasterio import Nimage
 from mapsaw.grid import Grid
 from mapsaw.util import attrdict
 
-from vpxwrap import *
+from pyvpx.vpxwrap import *
 
+from pyvpx.webp import riffwrap,webpwrap
 
 
 '''
@@ -45,17 +46,16 @@ bytes_from_ptr.restype = py_object
 
 
 
-_ivf_file_header_fmt = '<4sHH4sHHIIII'
-_ivf_frame_header_fmt = '<IQ'
 
-def ivf_frame_header(sz, ts):
-    return struct.pack(_ivf_frame_header_fmt, sz, ts)
+def ivf_frame_wrap(buf, ts):
+    return struct.pack('<IQ',
+                       len(buf), ts) + buf
 
 
 def ivf_file_header(cfgd, nframes):
     ny,nx = cfgd['shape']
 
-    return struct.pack(_ivf_file_header_fmt,
+    return struct.pack('<4sHH4sHHIIII',
                        'DKIF',
                        0,
                        32,
@@ -148,10 +148,6 @@ class VpxEncodeStream(object):
         self.outfp = None
         self.decoder = None
 
-    def open(self, fn):
-        self.outfp = open(fn, 'wb')
-        self.outfp.write(ivf_file_header(self.config, len(fns)))
-
     def start_pass(self, passi):
         """must call this before encoding frames"""
 
@@ -190,6 +186,14 @@ class VpxEncodeStream(object):
         self.framei = 0
 
 
+    def open(self, outdir):
+        self.outdir = outdir
+        if not os.path.isdir(outdir):
+            os.makedirs(outdir)
+
+        self.outfp = open(outdir+'/out.ivf', 'wb')
+        self.outfp.write(ivf_file_header(self.config, len(fns)))
+
     def encpng(self, filename):
 
         nim = Nimage.load(filename)
@@ -200,8 +204,8 @@ class VpxEncodeStream(object):
         assert ys.shape == self.shape
 
         self.hshape = [(n+1)//2 for n in self.shape]
-        us = 0 * np.ones(self.hshape, np.uint8)
-        vs = 0 * np.ones(self.hshape, np.uint8)
+        us = 128 * np.ones(self.hshape, np.uint8)
+        vs = 128 * np.ones(self.hshape, np.uint8)
 
         self.encframe((ys,us,vs))
         self.drain()
@@ -239,9 +243,13 @@ class VpxEncodeStream(object):
         if pkt.keyframe:
             pass
 
-        self.outfp.write(ivf_frame_header(len(buf), self.framei * 10))
-        self.outfp.write(buf)
+        self.outfp.write(ivf_frame_wrap(buf, self.framei * 10))
 
+
+    def save_keyframe(self, pkt):
+        fp = open('%s/%04d.webp' % (self.outdir, self.framei), 'wb')
+        fp.write(riffwrap(webpwrap(pkt.buf)))
+        fp.close()
 
 
     def drain(self):
@@ -255,6 +263,7 @@ class VpxEncodeStream(object):
 
                 if pkt.keyframe:
                     flag = 'K'
+                    self.save_keyframe(pkt)
 
                 print '%4d %s %10d' % (self.framei, flag, len(pkt.buf))
 
@@ -273,8 +282,8 @@ class VpxEncodeStream(object):
         # rc_target_bitrate is in kilobits per second
         default_bits_per_pixel_per_frame = cfg.rc_target_bitrate * 1024.0 / (cfg.g_h * cfg.g_w) / fps
 
-        # this gives PSNR of around 40 for satellite image?
-        bits_per_pixel_per_frame = 0.2
+        # 0.2 bpp gives PSNR of around 40 for satellite image?
+        bits_per_pixel_per_frame = 0.3
 
         ny,nx = self.shape
         cfg.rc_target_bitrate = int(bits_per_pixel_per_frame * fps * nx * ny / 1024.0)
@@ -388,6 +397,7 @@ class VpxEncodeStream(object):
             if pkt.keyframe:
                 if len(gop):
                     yield gop
+
                 gop = [pkt]
             else:
                 gop.append(pkt)
@@ -429,7 +439,7 @@ class VpxDecodeStream(object):
 
 
     def drain(self):
-        for i,(ys,us,vs) in enumerate(self.iterframes()):
+        for i,(info, (ys,us,vs)) in enumerate(self.iterframes()):
             nim = Nimage(Grid(None, shape=ys.shape), data=ys)
             nim.save_raster(os.path.join(self.outdir, '%04d.png'%self.framei))
             self.framei += 1
@@ -446,9 +456,11 @@ class VpxDecodeStream(object):
             # copy the arrays since they point into external storage
             arrs = tuple(np.array(a) for a in imgplanes(img, 3))
 
+            info = dict()
+
             # XXX destroy img?
 
-            yield arrs
+            yield info,arrs
 
 
     
@@ -466,8 +478,7 @@ if __name__ == '__main__':
     #while 1:
     #    enc.encgrey()
 
-    enc.open('out.vp8')
-
+    enc.open('vp8out')
 
     enc.decoder = VpxDecodeStream()
     enc.decoder.outdir = 'pngs'
