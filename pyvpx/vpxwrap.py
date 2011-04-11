@@ -6,190 +6,190 @@ _libraries['/xtra/libvpx/x86_build/libvpx.so.0.9.6'] = CDLL('/xtra/libvpx/x86_bu
 WSTRING = c_wchar_p
 
 
-VPX_CODEC_ABI_MISMATCH = 3
-VPX_IMG_FMT_YUY2 = 6
-VPX_CQ = 2
-VP8_GOLD_FRAME = 2
-VP8E_SET_ROI_MAP = 8
-# __wur = __attribute_warn_unused_result__ # alias
-VPX_CODEC_STATS_PKT = 1
-VPX_IMG_FMT_RGB555 = 4
-IMG_FMT_RGB555 = VPX_IMG_FMT_RGB555 # alias
-VP8E_SET_CQ_LEVEL = 25
-# def __NTH(fct): return fct throw () # macro
-VP8E_USE_REFERENCE = 7
-VPX_IMG_FMT_RGB24 = 1
-IMG_FMT_RGB24 = VPX_IMG_FMT_RGB24 # alias
-VPX_CODEC_LIST_END = 9
-VPX_CODEC_CUSTOM_PKT = 256
-VP8_SET_REFERENCE = 1
-VP8_ALTR_FRAME = 4
-VPX_CODEC_PSNR_PKT = 2
-VPX_IMG_FMT_VPXYV12 = 771
-VP8_NOFILTERING = 0
-VPX_PLANE_V = 2 # Variable c_int '2'
-PLANE_V = VPX_PLANE_V # alias
-VPX_IMG_FMT_I420 = 258
-def __P(args): return args # macro
-def offsetof(TYPE,MEMBER): return __builtin_offsetof (TYPE, MEMBER) # macro
-def VPX_VERSION_MINOR(v): return ((v>>8)&0xff) # macro
-def vpx_codec_control(ctx,id,data): return vpx_codec_control_ ##id(ctx,id,data) # macro
-VPX_DEC_ABI_MISMATCH = 3
-VP8_DEBLOCK = 1
-VPX_IMG_FMT_RGB555_LE = 13
-def __PMT(args): return args # macro
-VP8_DECODER_CTRL_ID_MAX = 258
-VP8D_GET_LAST_REF_UPDATES = 256
-# def __REDIRECT(name,proto,alias): return name proto __asm__ (__ASMNAME (#alias)) # macro
-VP8E_SET_ACTIVEMAP = 9
-VPX_IMG_FMT_RGB32 = 2
-IMG_FMT_RGB32 = VPX_IMG_FMT_RGB32 # alias
-VPX_IMG_FMT_NONE = 0
-VPX_CODEC_UNSUP_FEATURE = 6
-# def __ASMNAME2(prefix,cname): return __STRING (prefix) cname # macro
-VPX_CBR = 1
-VPX_DEC_UNSUP_BITSTREAM = 5
-VPX_KF_FIXED = 0
-VP8_DEMACROBLOCK = 2
-VPX_IMG_FMT_VPXI420 = 260
-IMG_FMT_VPXI420 = VPX_IMG_FMT_VPXI420 # alias
-VP8D_GET_FRAME_CORRUPTED = 257
-IMG_FMT_RGB555_LE = VPX_IMG_FMT_RGB555_LE # alias
-VP8E_SET_SCALEMODE = 11
-VP8_COPY_REFERENCE = 2
-VPX_CODEC_CORRUPT_FRAME = 7
-VPX_DEC_INVALID_PARAM = 8
-VPX_IMG_FMT_ARGB = 10
-IMG_FMT_ARGB = VPX_IMG_FMT_ARGB # alias
-VPX_PLANE_ALPHA = 3 # Variable c_int '3'
-PLANE_ALPHA = VPX_PLANE_ALPHA # alias
-VPX_IMG_FMT_UV_FLIP = 512 # Variable c_int '512'
-IMG_FMT_UV_FLIP = VPX_IMG_FMT_UV_FLIP # alias
-def vpx_codec_enc_init(ctx,iface,cfg,flags): return vpx_codec_enc_init_ver(ctx, iface, cfg, flags, VPX_ENCODER_ABI_VERSION) # macro
-VPX_DEC_UNSUP_FEATURE = 6
-VP8_BEST_QUALITY_ENCODING = 0
-VPX_KF_AUTO = 1
-def vpx_codec_dec_init(ctx,iface,cfg,flags): return vpx_codec_dec_init_ver(ctx, iface, cfg, flags, VPX_DECODER_ABI_VERSION) # macro
-VP8_ADDNOISE = 4
-VP8_SET_POSTPROC = 3
-VPX_CODEC_INVALID_PARAM = 8
-VP8_SET_DBG_COLOR_MB_MODES = 5
-VPX_IMG_FMT_YVYU = 7
-VP8E_SET_CPUUSED = 13
-
-# values for enumeration 'vpx_img_fmt'
-VPX_IMG_FMT_RGB565 = 3
-VPX_IMG_FMT_UYVY = 5
-VPX_IMG_FMT_BGR24 = 8
-VPX_IMG_FMT_RGB32_LE = 9
-VPX_IMG_FMT_ARGB_LE = 11
-VPX_IMG_FMT_RGB565_LE = 12
-VPX_IMG_FMT_YV12 = 769
-vpx_img_fmt = c_int # enum
-img_fmt = vpx_img_fmt # alias
-VPX_KF_DISABLED = 0
-VP8_DEBUG_TXT_FRAME_INFO = 8
-IMG_FMT_VPXYV12 = VPX_IMG_FMT_VPXYV12 # alias
-# def __REDIRECT_NTH(name,proto,alias): return name proto __THROW __asm__ (__ASMNAME (#alias)) # macro
-VP8E_SET_ENABLEAUTOALTREF = 14
-VP8_SET_DBG_COLOR_REF_FRAME = 4
-# def VPX_CTRL_USE_TYPE_DEPRECATED(id,typ): return DECLSPEC_DEPRECATED static vpx_codec_err_t vpx_codec_control_ ##id(vpx_codec_ctx_t*, int, typ) DEPRECATED UNUSED; DECLSPEC_DEPRECATED static vpx_codec_err_t vpx_codec_control_ ##id(vpx_codec_ctx_t *ctx, int ctrl_id, typ data) { return vpx_codec_control_(ctx, ctrl_id, data); } # macro
-def __GLIBC_PREREQ(maj,min): return ((__GLIBC__ << 16) + __GLIBC_MINOR__ >= ((maj) << 16) + (min)) # macro
-IMG_FMT_ARGB_LE = VPX_IMG_FMT_ARGB_LE # alias
-VP8_REAL_TIME_ENCODING = 2
-VP8_DEBUG_TXT_MBLK_MODES = 16
-VPX_DEC_ERROR = 1
-IMG_FMT_YUY2 = VPX_IMG_FMT_YUY2 # alias
-IMG_FMT_UYVY = VPX_IMG_FMT_UYVY # alias
-def vpx_codec_version_patch(): return ((vpx_codec_version()>>0)&0xff) # macro
-VP8E_SET_NOISE_SENSITIVITY = 15
-VPX_DEC_OK = 0
-# def VPX_CTRL_VOID(id): return static vpx_codec_err_t vpx_codec_control_ ##id(vpx_codec_ctx_t*, int) UNUSED; static vpx_codec_err_t vpx_codec_control_ ##id(vpx_codec_ctx_t *ctx, int ctrl_id) { return vpx_codec_control_(ctx, ctrl_id); } # macro
-def __GNUC_PREREQ(maj,min): return ((__GNUC__ << 16) + __GNUC_MINOR__ >= ((maj) << 16) + (min)) # macro
 VP8_GOOD_QUALITY_ENCODING = 1
-VPX_DEC_LIST_END = 9
-VP8E_NORMAL = 0
-VP8E_FOURFIVE = 1
-VP8_DEBUG_TXT_DC_DIFF = 32
+VPX_IMG_FMT_YV12 = 769
 IMG_FMT_YV12 = VPX_IMG_FMT_YV12 # alias
-def __STRING(x): return #x # macro
-VP8E_SET_SHARPNESS = 16
-VP8_SET_DBG_COLOR_B_MODES = 6
-VP8_ONE_TOKENPARTITION = 0
-# def __LDBL_REDIR(name,proto): return name proto # macro
-# def __warndecl(name,msg): return extern void name (void) # macro
-def __CONCAT(x,y): return x ## y # macro
-IMG_FMT_BGR24 = VPX_IMG_FMT_BGR24 # alias
-VPX_DEC_CORRUPT_FRAME = 7
-VP8E_THREEFIVE = 2
 VP8_DEBUG_TXT_RATE_INFO = 64
-VPX_CODEC_INCAPABLE = 4
-IMG_FMT_YVYU = VPX_IMG_FMT_YVYU # alias
-VPX_DEC_MEM_ERROR = 2
+# NULL = __null # alias
 VP8E_SET_STATIC_THRESHOLD = 17
 VP8_SET_DBG_DISPLAY_MV = 7
 VP8_TWO_TOKENPARTITION = 1
 # def __LDBL_REDIR1(name,proto,alias): return name proto # macro
+# def VPX_CTRL_USE_TYPE_DEPRECATED(id,typ): return DECLSPEC_DEPRECATED static vpx_codec_err_t vpx_codec_control_ ##id(vpx_codec_ctx_t*, int, typ) DEPRECATED UNUSED; DECLSPEC_DEPRECATED static vpx_codec_err_t vpx_codec_control_ ##id(vpx_codec_ctx_t *ctx, int ctrl_id, typ data) { return vpx_codec_control_(ctx, ctrl_id, data); } # macro
+
+# values for enumeration 'vpx_img_fmt'
+VPX_IMG_FMT_NONE = 0
+VPX_IMG_FMT_RGB24 = 1
+VPX_IMG_FMT_RGB32 = 2
+VPX_IMG_FMT_RGB565 = 3
+VPX_IMG_FMT_RGB555 = 4
+VPX_IMG_FMT_UYVY = 5
+VPX_IMG_FMT_YUY2 = 6
+VPX_IMG_FMT_YVYU = 7
+VPX_IMG_FMT_BGR24 = 8
+VPX_IMG_FMT_RGB32_LE = 9
+VPX_IMG_FMT_ARGB = 10
+VPX_IMG_FMT_ARGB_LE = 11
+VPX_IMG_FMT_RGB565_LE = 12
+VPX_IMG_FMT_RGB555_LE = 13
+VPX_IMG_FMT_I420 = 258
+VPX_IMG_FMT_VPXYV12 = 771
+VPX_IMG_FMT_VPXI420 = 260
+vpx_img_fmt = c_int # enum
+vpx_img_fmt_t = vpx_img_fmt
+img_fmt_t = vpx_img_fmt_t # alias
+VPX_PLANE_ALPHA = 3 # Variable c_int '3'
+PLANE_ALPHA = VPX_PLANE_ALPHA # alias
 VP8_TUNE_SSIM = 1
-def __ASMNAME(cname): return __ASMNAME2 (__USER_LABEL_PREFIX__, cname) # macro
-VP8_TUNE_PSNR = 0
-VP8E_ONETWO = 3
 def __attribute_format_arg__(x): return __attribute__ ((__format_arg__ (x))) # macro
 VP8E_SET_TOKEN_PARTITIONS = 18
 VP8_COMMON_CTRL_ID_MAX = 8
-VPX_RC_FIRST_PASS = 1
 VP8_FOUR_TOKENPARTITION = 2
-vpx_img_fmt_t = vpx_img_fmt
-img_fmt_t = vpx_img_fmt_t # alias
+VPX_IMG_FMT_HAS_ALPHA = 1024 # Variable c_int '1024'
+IMG_FMT_HAS_ALPHA = VPX_IMG_FMT_HAS_ALPHA # alias
+IMG_FMT_RGB24 = VPX_IMG_FMT_RGB24 # alias
+VPX_CODEC_LIST_END = 9
 def vpx_codec_version_major(): return ((vpx_codec_version()>>16)&0xff) # macro
 def __attribute_format_strfmon__(a,b): return __attribute__ ((__format__ (__strfmon__, a, b))) # macro
 VP8E_GET_LAST_QUANTIZER = 19
+IMG_FMT_RGB565 = VPX_IMG_FMT_RGB565 # alias
 VP8_DECODER_CTRL_ID_START = 256
 VP8_EIGHT_TOKENPARTITION = 3
-VPX_IMG_FMT_HAS_ALPHA = 1024 # Variable c_int '1024'
-IMG_FMT_HAS_ALPHA = VPX_IMG_FMT_HAS_ALPHA # alias
-# def VPX_CTRL_USE_TYPE(id,typ): return static vpx_codec_err_t vpx_codec_control_ ##id(vpx_codec_ctx_t*, int, typ) UNUSED; static vpx_codec_err_t vpx_codec_control_ ##id(vpx_codec_ctx_t *ctx, int ctrl_id, typ data) { return vpx_codec_control_(ctx, ctrl_id, data); } # macro
+IMG_FMT_RGB32_LE = VPX_IMG_FMT_RGB32_LE # alias
+VPX_DEC_CORRUPT_FRAME = 7
+VP8E_GET_LAST_QUANTIZER_64 = 20
+VP8E_SET_SHARPNESS = 16
+IMG_FMT_NONE = VPX_IMG_FMT_NONE # alias
 VPX_PLANE_PACKED = 0 # Variable c_int '0'
 PLANE_PACKED = VPX_PLANE_PACKED # alias
-def __bos(ptr): return __builtin_object_size (ptr, __USE_FORTIFY_LEVEL > 1) # macro
-VP8E_GET_LAST_QUANTIZER_64 = 20
-IMG_FMT_RGB565 = VPX_IMG_FMT_RGB565 # alias
-IMG_FMT_I420 = VPX_IMG_FMT_I420 # alias
-def VPX_VERSION_MAJOR(v): return ((v>>16)&0xff) # macro
+def vpx_codec_control(ctx,id,data): return vpx_codec_control_ ##id(ctx,id,data) # macro
 def vpx_codec_version_minor(): return ((vpx_codec_version()>>8)&0xff) # macro
 def __bos0(ptr): return __builtin_object_size (ptr, 0) # macro
 VP8E_SET_ARNR_MAXFRAMES = 21
-VPX_PLANE_U = 1 # Variable c_int '1'
-PLANE_U = VPX_PLANE_U # alias
+VP8_SET_DBG_COLOR_B_MODES = 6
 # def __LDBL_REDIR1_NTH(name,proto,alias): return name proto __THROW # macro
-IMG_FMT_NONE = VPX_IMG_FMT_NONE # alias
 VPX_CODEC_OK = 0
-VPX_CODEC_UNSUP_BITSTREAM = 5
-IMG_FMT_RGB32_LE = VPX_IMG_FMT_RGB32_LE # alias
-# def __nonnull(params): return __attribute__ ((__nonnull__ params)) # macro
-VP8E_SET_ARNR_STRENGTH = 22
-VPX_RC_ONE_PASS = 0
-# NULL = __null # alias
-VPX_CODEC_ERROR = 1
+VPX_DEC_INVALID_PARAM = 8
 VPX_PLANE_Y = 0 # Variable c_int '0'
 PLANE_Y = VPX_PLANE_Y # alias
-def vpx_dec_xma_init(ctx,iface): return vpx_dec_xma_init_ver(ctx, iface, VPX_DECODER_ABI_VERSION) # macro
-VP8E_SET_ARNR_TYPE = 23
+# def __nonnull(params): return __attribute__ ((__nonnull__ params)) # macro
+VP8E_SET_ARNR_STRENGTH = 22
 IMG_FMT_RGB565_LE = VPX_IMG_FMT_RGB565_LE # alias
-VPX_VBR = 0
-VP8E_UPD_ENTROPY = 5
 VPX_IMG_FMT_PLANAR = 256 # Variable c_int '256'
 IMG_FMT_PLANAR = VPX_IMG_FMT_PLANAR # alias
-VPX_CODEC_MEM_ERROR = 2
-def vpx_dec_init(ctx,iface): return vpx_dec_init_ver(ctx, iface, VPX_DECODER_ABI_VERSION) # macro
-VP8_LAST_FRAME = 1
-def VPX_VERSION_PATCH(v): return ((v>>0)&0xff) # macro
+VPX_RC_ONE_PASS = 0
+VPX_CODEC_ERROR = 1
+VP8_SET_POSTPROC = 3
+VP8_SET_DBG_COLOR_MB_MODES = 5
+# def VPX_CTRL_VOID(id): return static vpx_codec_err_t vpx_codec_control_ ##id(vpx_codec_ctx_t*, int) UNUSED; static vpx_codec_err_t vpx_codec_control_ ##id(vpx_codec_ctx_t *ctx, int ctrl_id) { return vpx_codec_control_(ctx, ctrl_id); } # macro
 # __gwchar_t = wchar_t # alias
-VP8E_UPD_REFERENCE = 6
+IMG_FMT_I420 = VPX_IMG_FMT_I420 # alias
+VP8E_SET_ARNR_TYPE = 23
+VPX_VBR = 0
+VP8E_UPD_ENTROPY = 5
+VPX_RC_FIRST_PASS = 1
+def vpx_dec_init(ctx,iface): return vpx_dec_init_ver(ctx, iface, VPX_DECODER_ABI_VERSION) # macro
+VP8_ONE_TOKENPARTITION = 0
+VPX_DEC_OK = 0
+VP8_LAST_FRAME = 1
+# __wur = __attribute_warn_unused_result__ # alias
 VPX_CODEC_CX_FRAME_PKT = 0
+VPX_IMG_FMT_UV_FLIP = 512 # Variable c_int '512'
+IMG_FMT_UV_FLIP = VPX_IMG_FMT_UV_FLIP # alias
+VPX_DEC_ERROR = 1
 # def __LDBL_REDIR_NTH(name,proto): return name proto __THROW # macro
-VP8E_SET_TUNING = 24
+VPX_CBR = 1
+VP8E_UPD_REFERENCE = 6
 VPX_RC_LAST_PASS = 2
+def vpx_codec_version_patch(): return ((vpx_codec_version()>>0)&0xff) # macro
+VPX_CODEC_ABI_MISMATCH = 3
+def VPX_VERSION_PATCH(v): return ((v>>0)&0xff) # macro
+VP8_GOLD_FRAME = 2
+VPX_CODEC_STATS_PKT = 1
+def offsetof(TYPE,MEMBER): return __builtin_offsetof (TYPE, MEMBER) # macro
+VP8E_SET_CQ_LEVEL = 25
+IMG_FMT_UYVY = VPX_IMG_FMT_UYVY # alias
+# def __NTH(fct): return fct throw () # macro
+img_fmt = vpx_img_fmt # alias
+VP8E_USE_REFERENCE = 7
+VPX_PLANE_U = 1 # Variable c_int '1'
+PLANE_U = VPX_PLANE_U # alias
+VPX_CODEC_INCAPABLE = 4
+VP8E_ONETWO = 3
+# def __warndecl(name,msg): return extern void name (void) # macro
+def __CONCAT(x,y): return x ## y # macro
+VPX_CODEC_CORRUPT_FRAME = 7
+VPX_DEC_MEM_ERROR = 2
+VP8_ALTR_FRAME = 4
+VPX_CODEC_PSNR_PKT = 2
+VP8_NOFILTERING = 0
+VPX_DEC_ABI_MISMATCH = 3
+def __P(args): return args # macro
+VP8_DEBUG_TXT_DC_DIFF = 32
+VP8E_SET_ROI_MAP = 8
+IMG_FMT_RGB32 = VPX_IMG_FMT_RGB32 # alias
+VPX_CODEC_UNSUP_BITSTREAM = 5
+def __ASMNAME(cname): return __ASMNAME2 (__USER_LABEL_PREFIX__, cname) # macro
+def vpx_dec_xma_init(ctx,iface): return vpx_dec_xma_init_ver(ctx, iface, VPX_DECODER_ABI_VERSION) # macro
+VPX_CQ = 2
+IMG_FMT_YVYU = VPX_IMG_FMT_YVYU # alias
+VPX_CODEC_CUSTOM_PKT = 256
+def __bos(ptr): return __builtin_object_size (ptr, __USE_FORTIFY_LEVEL > 1) # macro
+VP8_DEBLOCK = 1
+IMG_FMT_VPXI420 = VPX_IMG_FMT_VPXI420 # alias
+def __PMT(args): return args # macro
+VP8D_GET_LAST_REF_UPDATES = 256
+VP8E_SET_ACTIVEMAP = 9
+VP8_SET_REFERENCE = 1
+VPX_CODEC_UNSUP_FEATURE = 6
+# def __ASMNAME2(prefix,cname): return __STRING (prefix) cname # macro
+VPX_DEC_UNSUP_BITSTREAM = 5
+VPX_KF_FIXED = 0
+IMG_FMT_RGB555_LE = VPX_IMG_FMT_RGB555_LE # alias
+VP8_DEMACROBLOCK = 2
+# def __REDIRECT(name,proto,alias): return name proto __asm__ (__ASMNAME (#alias)) # macro
+VP8D_GET_FRAME_CORRUPTED = 257
+VPX_CODEC_MEM_ERROR = 2
+VP8E_SET_SCALEMODE = 11
+VP8_COPY_REFERENCE = 2
+VPX_DEC_UNSUP_FEATURE = 6
+VP8_BEST_QUALITY_ENCODING = 0
+VPX_KF_AUTO = 1
+# def VPX_CTRL_USE_TYPE(id,typ): return static vpx_codec_err_t vpx_codec_control_ ##id(vpx_codec_ctx_t*, int, typ) UNUSED; static vpx_codec_err_t vpx_codec_control_ ##id(vpx_codec_ctx_t *ctx, int ctrl_id, typ data) { return vpx_codec_control_(ctx, ctrl_id, data); } # macro
+def vpx_codec_dec_init(ctx,iface,cfg,flags): return vpx_codec_dec_init_ver(ctx, iface, cfg, flags, VPX_DECODER_ABI_VERSION) # macro
+VP8_ADDNOISE = 4
+IMG_FMT_VPXYV12 = VPX_IMG_FMT_VPXYV12 # alias
+IMG_FMT_RGB555 = VPX_IMG_FMT_RGB555 # alias
+VP8_DECODER_CTRL_ID_MAX = 258
+VPX_CODEC_INVALID_PARAM = 8
+IMG_FMT_ARGB_LE = VPX_IMG_FMT_ARGB_LE # alias
+VPX_KF_DISABLED = 0
+VP8_DEBUG_TXT_FRAME_INFO = 8
+IMG_FMT_YUY2 = VPX_IMG_FMT_YUY2 # alias
+VP8E_SET_CPUUSED = 13
+def VPX_VERSION_MINOR(v): return ((v>>8)&0xff) # macro
+# def __REDIRECT_NTH(name,proto,alias): return name proto __THROW __asm__ (__ASMNAME (#alias)) # macro
+VP8E_SET_ENABLEAUTOALTREF = 14
+VP8_SET_DBG_COLOR_REF_FRAME = 4
+VPX_PLANE_V = 2 # Variable c_int '2'
+PLANE_V = VPX_PLANE_V # alias
+def __GLIBC_PREREQ(maj,min): return ((__GLIBC__ << 16) + __GLIBC_MINOR__ >= ((maj) << 16) + (min)) # macro
+VP8_REAL_TIME_ENCODING = 2
+VP8E_NORMAL = 0
+VP8_DEBUG_TXT_MBLK_MODES = 16
+VP8E_SET_NOISE_SENSITIVITY = 15
+def __GNUC_PREREQ(maj,min): return ((__GNUC__ << 16) + __GNUC_MINOR__ >= ((maj) << 16) + (min)) # macro
+VP8E_THREEFIVE = 2
+IMG_FMT_BGR24 = VPX_IMG_FMT_BGR24 # alias
+IMG_FMT_ARGB = VPX_IMG_FMT_ARGB # alias
+VPX_DEC_LIST_END = 9
+VP8E_FOURFIVE = 1
+def vpx_codec_enc_init(ctx,iface,cfg,flags): return vpx_codec_enc_init_ver(ctx, iface, cfg, flags, VPX_ENCODER_ABI_VERSION) # macro
+def __STRING(x): return #x # macro
+VP8E_SET_TUNING = 24
+def VPX_VERSION_MAJOR(v): return ((v>>16)&0xff) # macro
+# def __LDBL_REDIR(name,proto): return name proto # macro
+VP8_TUNE_PSNR = 0
 VPX_CODEC_ABI_VERSION = 3 # Variable c_int '3'
 VPX_FRAME_IS_KEY = 1 # Variable c_int '1'
 _ATFILE_SOURCE = 1 # Variable c_int '1'
@@ -1017,7 +1017,7 @@ vpx_img_free.__doc__ = \
 __all__ = ['VPX_RC_ONE_PASS', 'vpx_fixed_buf_t', '_ATFILE_SOURCE',
            'int_fast32_t', 'SCNuFAST64', 'SCNdPTR',
            'vpx_enc_frame_flags_t', 'VP8_COPY_REFERENCE',
-           'VPX_VERSION_MINOR', 'vp8_postproc_cfg', 'uint8_t',
+           'IMG_FMT_YV12', 'vp8_postproc_cfg', 'uint8_t',
            'vp8e_enc_control_id', 'VPX_KF_FIXED',
            'vpx_ref_frame_type', 'VPX_DEC_CAP_PUT_FRAME',
            'VPX_CODEC_CAP_POSTPROC', 'SCNoFAST8', 'vpx_img_wrap',
@@ -1035,9 +1035,9 @@ __all__ = ['VPX_RC_ONE_PASS', 'vpx_fixed_buf_t', '_ATFILE_SOURCE',
            'vpx_codec_iface', '__strtol_internal_defined',
            'SCNiFAST64', 'vpx_codec_dec_init', 'PRIxPTR',
            'VPX_CODEC_INCAPABLE', 'IMG_FMT_UYVY', 'SCNd32', 'PRIX32',
-           'SCNxLEAST32', 'vpx_dec_xma_init',
-           'VPX_CODEC_CX_FRAME_PKT', '__wcstol_internal_defined',
-           'PRIXFAST16', 'vpx_codec_ctx_t', 'IMG_FMT_RGB32',
+           'SCNxLEAST32', 'vpx_dec_xma_init', 'VPX_IMG_FMT_UV_FLIP',
+           '__wcstol_internal_defined', 'PRIXFAST16',
+           'vpx_codec_ctx_t', 'IMG_FMT_RGB32',
            'vpx_codec_frame_flags_t', 'SCNx8', 'PRIuFAST8',
            'vp8e_token_partitions', 'VP8_REAL_TIME_ENCODING', '__PMT',
            'VPX_IMG_FMT_RGB565', 'PRId64', 'VPX_CODEC_CAP_PSNR',
@@ -1053,8 +1053,8 @@ __all__ = ['VPX_RC_ONE_PASS', 'vpx_fixed_buf_t', '_ATFILE_SOURCE',
            '__USE_XOPEN_EXTENDED', 'VPX_FRAME_IS_DROPPABLE',
            'VPX_RC_FIRST_PASS', '__PRIPTR_PREFIX', 'PRIiLEAST64',
            'IMG_FMT_PLANAR', 'vpx_dec_ctx_t', 'VPX_DL_BEST_QUALITY',
-           'PRIxFAST32', 'VP8_TWO_TOKENPARTITION',
-           'vpx_codec_iface_name', 'VPX_KF_AUTO', 'vpx_active_map_t',
+           'PRIxFAST32', 'VPX_CODEC_PSNR_PKT', 'vpx_codec_iface_name',
+           'VPX_KF_AUTO', 'vpx_active_map_t',
            'vpx_codec_version_extra_str', 'VPX_DEC_OK',
            'IMG_FMT_VPXYV12', 'PRIx32', 'SCNu64', 'VP8E_SET_TUNING',
            '__WORDSIZE', 'VP8_DECODER_CTRL_ID_START', 'vpx_kf_mode',
@@ -1071,53 +1071,56 @@ __all__ = ['VPX_RC_ONE_PASS', 'vpx_fixed_buf_t', '_ATFILE_SOURCE',
            'vpx_codec_register_put_frame_cb',
            'VPX_DECODER_ABI_VERSION', 'VP8_SET_DBG_COLOR_REF_FRAME',
            'PRIuFAST32', 'PRIX64', 'VP8E_SET_TOKEN_PARTITIONS',
-           'uint_least16_t', 'vpx_dec_stream_info_t', 'SCNi64',
-           'VPX_IMG_FMT_RGB555', 'VP8_EFLAG_FORCE_ARF', 'PRIo64',
-           'VP8_EFLAG_NO_UPD_LAST', 'IMG_FMT_RGB555_LE',
-           'SCNoLEAST16', 'SCNxFAST64', 'PRIdLEAST64', '__USE_ATFILE',
-           'PLANE_ALPHA', 'VPX_DEC_MEM_ZERO', 'vpx_scaling_mode_1d',
+           'uint_least16_t', 'vpx_dec_stream_info_t',
+           'VPX_IMG_FMT_BGR24', 'VPX_IMG_FMT_RGB555',
+           'VP8_EFLAG_FORCE_ARF', 'PRIo64', 'VP8_EFLAG_NO_UPD_LAST',
+           'IMG_FMT_RGB555_LE', 'SCNoLEAST16', 'SCNxFAST64',
+           'PRIdLEAST64', '__USE_ATFILE', 'PLANE_ALPHA',
+           'VPX_DEC_MEM_ZERO', 'vpx_scaling_mode_1d',
            'VPX_FRAME_IS_INVISIBLE', 'PRIo16', '__USE_POSIX',
            'SCNxFAST16', 'PRIxMAX', 'PRIiFAST16', 'vpx_codec_dec_cfg',
            'VPX_CODEC_ERROR', 'VPX_IMG_FMT_RGB565_LE',
            'vpx_codec_vp8_dx_algo', 'SCNdFAST8', '__PRI64_PREFIX',
            'PRIoLEAST16', 'vpx_image_rect_t', 'VP8_LAST_FRAME',
            'vpx_ref_frame', 'SCNdFAST64', 'int_fast64_t',
-           'vpx_dec_put_frame_cb_fn_t', 'PLANE_U', 'PLANE_V',
+           'vpx_dec_put_frame_cb_fn_t', '_BITS_WCHAR_H', 'PLANE_V',
            'VP8E_GET_LAST_QUANTIZER_64', 'PLANE_Y', 'VPX_KF_DISABLED',
-           'IMG_FMT_YV12', 'PRIuLEAST16', 'vpx_codec_err_to_string',
-           'VP8E_SET_ROI_MAP', 'SCNuLEAST16', 'SCNuLEAST8',
-           'VP8_EFLAG_NO_REF_GF', 'SCNoLEAST64', 'PRIoFAST16',
-           'PRIxLEAST64', 'vpx_codec_cx_pkt_kind', 'vpx_codec_err_t',
+           'VPX_VERSION_MINOR', 'PRIuLEAST16',
+           'vpx_codec_err_to_string', 'VP8E_SET_ROI_MAP',
+           'SCNuLEAST16', 'SCNuLEAST8', 'VP8_EFLAG_NO_REF_GF',
+           'SCNoLEAST64', 'PRIoFAST16', 'PRIxLEAST64',
+           'vpx_codec_cx_pkt_kind', 'vpx_codec_err_t',
            'vp8_com_control_id', '__P', 'vpx_codec_version',
            'VP8E_SET_SCALEMODE', 'VP8_GOLD_FRAME',
-           '__strtol_internal', '__USE_GNU', 'VPX_CODEC_PSNR_PKT',
+           '__strtol_internal', '__USE_GNU', 'VP8_TWO_TOKENPARTITION',
            'SCNiFAST16', 'PRIiLEAST32', 'VP8E_UPD_ENTROPY',
            'VPX_DEC_UNSUP_BITSTREAM', '__attribute_format_arg__',
            'VPX_DEC_LIST_END', 'vpx_img_free', '_POSIX_C_SOURCE',
            'VP8_EFLAG_NO_UPD_ARF', 'VP8_DEBUG_TXT_DC_DIFF',
            'VP8_EFLAG_NO_REF_LAST', 'VPX_CODEC_UNSUP_FEATURE',
            'PRIdFAST32', 'SCNi16', 'SCNdLEAST8', '__USE_SVID',
-           'IMG_FMT_RGB24', 'vpx_rational', '__USE_ANSI', 'SCNx16',
-           'SCNxLEAST8', 'vpx_codec_control_', 'VPX_SCALING_MODE',
-           'PRIiFAST8', 'VPX_IMG_FMT_VPXYV12', 'vpx_image_rect',
-           'vpx_codec_get_mem_map', 'vpx_dec_put_slice_cb_fn_t',
-           'VPX_VERSION_MAJOR', 'SCNdLEAST64', 'PRIoFAST8',
-           'PRIXLEAST8', 'SCNiFAST8', 'VPX_DEC_CORRUPT_FRAME',
-           'VPX_CODEC_CAP_DECODER', 'IMG_FMT_RGB565',
-           'VPX_CODEC_CUSTOM_PKT', '__STDC_ISO_10646__',
-           'VPX_CODEC_MEM_WRONLY', 'PRIdFAST16', 'vpx_img_flip',
-           'VPX_CODEC_UNSUP_BITSTREAM', 'VPX_ENCODER_ABI_VERSION',
-           'vpx_dec_iface_t', '__USE_LARGEFILE', 'VP8E_SET_CQ_LEVEL',
-           'PRIXFAST64', '_FEATURES_H', 'vpx_dec_init',
-           'VP8_GOOD_QUALITY_ENCODING', 'uint64_t', 'vpx_dec_mmap_t',
-           'VPX_IMG_FMT_YV12', 'vpx_dec_priv_t',
-           'VPX_IMG_FMT_RGB555_LE', 'VPX_DEC_MEM_FAST', 'SCNiPTR',
-           'uintptr_t', '__WORDSIZE_COMPAT32',
-           'vpx_codec_error_detail', 'vpx_codec_dec_cfg_t',
-           'vpx_codec_get_stream_info', 'vpx_codec_set_mem_map',
-           'IMG_FMT_YUY2', 'VP8_DEBUG_TXT_FRAME_INFO',
-           'vpx_codec_vp8_dx', 'vpx_fixed_buf',
-           'VPX_CODEC_CAP_ENCODER', '_XOPEN_SOURCE_EXTENDED', 'SCNd8',
+           'VPX_IMG_FMT_VPXYV12', 'vpx_rational', '__USE_ANSI',
+           'SCNx16', 'SCNxLEAST8', 'vpx_codec_control_',
+           'VPX_SCALING_MODE', 'PRIiFAST8', 'IMG_FMT_RGB24',
+           'vpx_image_rect', 'vpx_codec_get_mem_map',
+           'vpx_dec_put_slice_cb_fn_t', 'VPX_VERSION_MAJOR',
+           'SCNdLEAST64', 'PRIoFAST8', 'PRIXLEAST8', 'SCNiFAST8',
+           'VPX_DEC_CORRUPT_FRAME', 'VPX_CODEC_CAP_DECODER',
+           'IMG_FMT_RGB565', 'VPX_CODEC_CUSTOM_PKT',
+           '__STDC_ISO_10646__', 'VPX_CODEC_MEM_WRONLY', 'PRIdFAST16',
+           'vpx_img_flip', 'VPX_CODEC_UNSUP_BITSTREAM',
+           'VPX_ENCODER_ABI_VERSION', 'vpx_dec_iface_t',
+           '__USE_LARGEFILE', 'VP8E_SET_CQ_LEVEL', 'PRIXFAST64',
+           '_FEATURES_H', 'vpx_dec_init', 'VP8_GOOD_QUALITY_ENCODING',
+           'uint64_t', 'vpx_dec_mmap_t', 'VPX_IMG_FMT_YV12',
+           'vpx_dec_priv_t', 'VPX_IMG_FMT_RGB555_LE',
+           'VPX_DEC_MEM_FAST', 'SCNiPTR', 'uintptr_t',
+           '__WORDSIZE_COMPAT32', 'vpx_codec_error_detail',
+           'vpx_codec_dec_cfg_t', 'vpx_codec_get_stream_info',
+           'vpx_codec_set_mem_map', 'IMG_FMT_YUY2',
+           'VP8_DEBUG_TXT_FRAME_INFO', 'vpx_codec_vp8_dx',
+           'vpx_fixed_buf', 'VPX_CODEC_CAP_ENCODER',
+           '_XOPEN_SOURCE_EXTENDED', 'SCNd8',
            'VPX_CODEC_USE_POSTPROC', 'vpx_img_fmt', 'PRIxLEAST8',
            'vpx_codec_iter_t', 'vpx_codec_enc_init', 'uint32_t',
            'PRIXFAST8', 'PRIx64', 'VPX_IMG_FMT_VPXI420',
@@ -1129,7 +1132,7 @@ __all__ = ['VPX_RC_ONE_PASS', 'vpx_fixed_buf_t', '_ATFILE_SOURCE',
            'vpx_ref_frame_t', 'VPX_DEC_INVALID_PARAM',
            '__GNU_LIBRARY__', 'SCNdLEAST16', '__USE_LARGEFILE64',
            'vpx_codec_get_caps', 'vpx_codec_decode', 'SCNo16',
-           'VPX_IMG_FMT_UV_FLIP', 'VP8E_USE_REFERENCE',
+           'VPX_CODEC_CX_FRAME_PKT', 'VP8E_USE_REFERENCE',
            'VPX_IMG_FMT_I420', 'PRId16', 'PRIu16', 'PRIXLEAST16',
            'intptr_t', 'SCNd16', 'vpx_codec_version_minor',
            'int_fast8_t', 'SCNo8', 'PRIdFAST64',
@@ -1156,8 +1159,8 @@ __all__ = ['VPX_RC_ONE_PASS', 'vpx_fixed_buf_t', '_ATFILE_SOURCE',
            'IMG_FMT_I420', 'VPX_CODEC_MEM_FAST', 'vpx_codec_mmap',
            'vpx_enc_pass', 'vpx_codec_version_str', 'PRIxFAST64',
            '__wcstol_internal', 'strtoimax', 'vpx_codec_destroy',
-           'VP8_EFLAG_NO_REF_ARF', 'VPX_IMG_FMT_BGR24', 'strtoumax',
-           'IMG_FMT_VPXI420', '_STDINT_H', 'vpx_codec_enc_config_set',
+           'VP8_EFLAG_NO_REF_ARF', 'SCNi64', 'strtoumax',
+           'VP8_ALTR_FRAME', '_STDINT_H', 'vpx_codec_enc_config_set',
            'VPX_CODEC_MEM_ZERO', 'VP8_EFLAG_NO_UPD_ENTROPY', 'PRIX16',
            'vpx_codec_dec_init_ver', 'VPX_DEC_ABI_MISMATCH',
            'PRIXFAST32', 'PRIi16', 'imaxabs', 'VP8_EFLAG_FORCE_GF',
@@ -1167,24 +1170,24 @@ __all__ = ['VPX_RC_ONE_PASS', 'vpx_fixed_buf_t', '_ATFILE_SOURCE',
            '__WCHAR_MAX', 'SCNiMAX', 'int_fast16_t', 'SCNdMAX',
            'VPX_PLANE_ALPHA', 'SCNd64', 'VPX_IMG_FMT_ARGB_LE',
            'SCNoLEAST8', 'VPX_CODEC_USE_PSNR', 'VP8_DEMACROBLOCK',
-           '_SYS_CDEFS_H', 'PRIiPTR', '__GNUC_PREREQ', 'VP8_DEBLOCK',
-           'PRIXPTR', 'VP8E_SET_STATIC_THRESHOLD', 'uint_fast64_t',
-           'SCNuLEAST64', 'VP8E_SET_ACTIVEMAP', 'uint_fast8_t',
-           'VP8E_GET_LAST_QUANTIZER', 'VPX_DEC_MEM_ERROR',
-           '_LARGEFILE_SOURCE', 'VP8_TUNE_SSIM', 'PRIoLEAST32',
-           'uint_least32_t', 'VPX_CODEC_ABI_MISMATCH', 'vpx_image',
-           'VP8E_SET_NOISE_SENSITIVITY', 'vpx_image_t',
-           'VPX_VERSION_PATCH', 'VPX_IMG_FMT_YVYU', 'IMG_FMT_ARGB',
+           '_SYS_CDEFS_H', 'PRIiPTR', 'VP8_FOUR_TOKENPARTITION',
+           'VP8_DEBLOCK', 'PRIXPTR', 'VP8E_SET_STATIC_THRESHOLD',
+           'uint_fast64_t', 'SCNuLEAST64', 'VP8E_SET_ACTIVEMAP',
+           'uint_fast8_t', 'VP8E_GET_LAST_QUANTIZER',
+           'VPX_DEC_MEM_ERROR', '_LARGEFILE_SOURCE', 'VP8_TUNE_SSIM',
+           'PRIoLEAST32', 'uint_least32_t', 'VPX_CODEC_ABI_MISMATCH',
+           'vpx_image', 'VP8E_SET_NOISE_SENSITIVITY', 'vpx_image_t',
+           'VPX_VERSION_PATCH', 'img_fmt', 'IMG_FMT_ARGB',
            'VPX_DEC_MEM_WRONLY', 'vpx_codec_version_patch',
            'img_fmt_t', 'vpx_dec_caps_t', 'vp8e_encoding_mode',
            'SCNx64', 'int_least32_t', 'VPX_IMAGE_ABI_VERSION',
            '__STDC_IEC_559__', 'PRIuLEAST64', 'VPX_CODEC_USE_XMA',
            'vpx_codec_put_slice_cb_fn_t', 'VP8_DEBUG_TXT_RATE_INFO',
-           'img_fmt', 'VP8E_UPD_REFERENCE', 'vpx_codec_vp8_cx',
-           'vpx_codec_error', 'PRIxFAST8', 'vpx_codec_enc_cfg',
-           'PRIiLEAST8', '_ISOC99_SOURCE', 'VP8E_FOURFIVE', 'PRIiMAX',
-           'SCNoLEAST32', 'int16_t', 'SCNi32',
-           'VP8D_GET_FRAME_CORRUPTED', 'intmax_t', 'PRIu8',
+           'VPX_IMG_FMT_YVYU', 'VP8E_UPD_REFERENCE',
+           'vpx_codec_vp8_cx', 'vpx_codec_error', 'PRIxFAST8',
+           'vpx_codec_enc_cfg', 'PRIiLEAST8', '_ISOC99_SOURCE',
+           'VP8E_FOURFIVE', 'PRIiMAX', 'SCNoLEAST32', 'int16_t',
+           'SCNi32', 'VP8D_GET_FRAME_CORRUPTED', 'intmax_t', 'PRIu8',
            'vpx_codec_put_frame_cb_fn_t', 'PRIuFAST16', 'PRIXMAX',
            'IMG_FMT_RGB565_LE', 'int_least8_t', 'PRIi64',
            'VPX_PLANE_V', 'VPX_PLANE_U', '_SVID_SOURCE',
@@ -1205,13 +1208,13 @@ __all__ = ['VPX_RC_ONE_PASS', 'vpx_fixed_buf_t', '_ATFILE_SOURCE',
            'vpx_dec_iter_t', 'SCNxLEAST64', 'SCNx32', 'PRIoFAST64',
            'vpx_codec_get_preview_frame', 'vpx_codec_ctx',
            '__wcstoul_internal_defined', '__STRING', 'int64_t',
-           'VP8_ALTR_FRAME', '__WCHAR_MIN', 'uint_fast32_t',
-           'PRIxLEAST16', 'VP8_FOUR_TOKENPARTITION', 'imaxdiv_t',
+           'IMG_FMT_VPXI420', '__WCHAR_MIN', 'uint_fast32_t',
+           'PRIxLEAST16', '__GNUC_PREREQ', 'imaxdiv_t',
            'VP8E_SET_ARNR_TYPE', 'VPX_FRAME_IS_KEY', 'PRId32',
            'IMG_FMT_BGR24', 'VPX_CODEC_OK', '_LARGEFILE64_SOURCE',
            'VP8_SET_DBG_DISPLAY_MV', 'vpx_psnr_pkt', 'SCNxLEAST16',
            '__bos0', 'VP8E_SET_ARNR_MAXFRAMES',
-           'N13vpx_codec_ctx3DOT_2E', 'PLANE_PACKED', '_BITS_WCHAR_H',
+           'N13vpx_codec_ctx3DOT_2E', 'PLANE_PACKED', 'PLANE_U',
            'VP8E_SET_SHARPNESS', 'vpx_img_fmt_t', '__GLIBC_MINOR__',
            'vp8_postproc_level', 'VP8D_GET_LAST_REF_UPDATES',
            'vpx_active_map', 'offsetof', 'SCNoPTR', 'PRIdLEAST8']
