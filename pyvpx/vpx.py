@@ -170,7 +170,10 @@ class VpxEncodeStream(object):
     
         self.codec = vpx_codec_ctx_t()
 
-        checkvpxres(vpx_codec_enc_init(self.codec, self.interface, self.cfg, 0),
+        # generate PSNR packets for debugging
+        flags = VPX_CODEC_USE_PSNR
+
+        checkvpxres(vpx_codec_enc_init(self.codec, self.interface, self.cfg, flags),
                     'vpx_codec_enc_init')
 
         # frame buffer vpx_img
@@ -265,13 +268,13 @@ class VpxEncodeStream(object):
         # rc_target_bitrate is in kilobits per second
         default_bits_per_pixel_per_frame = cfg.rc_target_bitrate * 1024.0 / (cfg.g_h * cfg.g_w) / fps
 
+        # this gives PSNR of around 40 for satellite image?
         bits_per_pixel_per_frame = 0.2
 
         ny,nx = self.shape
         cfg.rc_target_bitrate = int(bits_per_pixel_per_frame * fps * nx * ny / 1024.0)
         cfg.g_w = nx
         cfg.g_h = ny
-
 
         print 'shape', (cfg.g_h, cfg.g_w)
         print 'bitrate', cfg.rc_target_bitrate
@@ -346,9 +349,17 @@ class VpxEncodeStream(object):
                 self.stats.append(buf)
                 continue
 
+            if pkt.kind == VPX_CODEC_PSNR_PKT:
+                psnr = pkt.data.psnr.psnr[0]
+                print 'snr', psnr
+                continue
 
-            # XXX handle others?
-            assert (pkt.kind == VPX_CODEC_CX_FRAME_PKT)
+            if pkt.kind == VPX_CODEC_PSNR_PKT:
+                buf = bytes_from_ptr(pkt.data.raw.buf, pkt.data.raw.sz)
+                # custom packets are not handled
+                assert 0
+
+                continue
 
             fr = pkt.data.frame
 
