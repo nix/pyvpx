@@ -53,7 +53,7 @@ def ivf_frame_header(sz, ts):
 
 
 def ivf_file_header(cfgd, nframes):
-    ny,nx = cfgd.shape
+    ny,nx = cfgd['shape']
 
     return struct.pack(_ivf_file_header_fmt,
                        'DKIF',
@@ -61,7 +61,7 @@ def ivf_file_header(cfgd, nframes):
                        32,
                        'VP80',
                        nx, ny,
-                       cfgd.tbase_den, cfgd.tbase_num,
+                       cfgd['tbase_den'], cfgd['tbase_num'],
                        nframes,
                        0)
 
@@ -130,8 +130,9 @@ def checkvpxres(res, s):
 class VpxEncodeStream(object):
     """encode a series of frames to a VP8 stream"""
 
-    def __init__(self, shape):
-        self.shape = shape
+    def __init__(self, **config):
+        self.config = config
+        self.shape = config['shape']
 
         self.interface = vpx_codec_vp8_cx()
         print 'codec',vpx_codec_iface_name(self.interface)
@@ -147,6 +148,10 @@ class VpxEncodeStream(object):
         self.outfp = None
         self.decoder = None
 
+    def open(self, fn):
+        self.outfp = open(fn, 'wb')
+        self.outfp.write(ivf_file_header(self.config, len(fns)))
+
     def start_pass(self, passi):
         """must call this before encoding frames"""
 
@@ -154,9 +159,9 @@ class VpxEncodeStream(object):
 
         if self.npasses > 1:
             if self.passi == 0:
-                self.cfg.g_pass = VPX_RC_FIRST_PASS
+                self._cfg.g_pass = VPX_RC_FIRST_PASS
             else:
-                self.cfg.g_pass = VPX_RC_LAST_PASS
+                self._cfg.g_pass = VPX_RC_LAST_PASS
                 # XXX self.stats is an array of bytestrings
                 
                 statstr = ''.join(self.stats)
@@ -164,16 +169,16 @@ class VpxEncodeStream(object):
                 vpxstats.buf = cast(c_char_p(statstr), c_void_p)
                 vpxstats.sz = len(statstr)
 
-                self.cfg.rc_twopass_stats_in = vpxstats
+                self._cfg.rc_twopass_stats_in = vpxstats
         else:
-            self.cfg.g_pass = VPX_RC_ONE_PASS
+            self._cfg.g_pass = VPX_RC_ONE_PASS
     
         self.codec = vpx_codec_ctx_t()
 
         # generate PSNR packets for debugging
         flags = VPX_CODEC_USE_PSNR
 
-        checkvpxres(vpx_codec_enc_init(self.codec, self.interface, self.cfg, flags),
+        checkvpxres(vpx_codec_enc_init(self.codec, self.interface, self._cfg, flags),
                     'vpx_codec_enc_init')
 
         # frame buffer vpx_img
@@ -280,7 +285,7 @@ class VpxEncodeStream(object):
         print 'bitrate', cfg.rc_target_bitrate
         print 'bpppf', bits_per_pixel_per_frame
         
-        self.cfg = cfg
+        self._cfg = cfg
 
     def set_ref_frame(self, img):
         ref = vpx_ref_frame_t()
@@ -454,16 +459,16 @@ if __name__ == '__main__':
     fns = list(sorted(glob('/x/pyvpx/satanim/*.png')))
 
     cfgd = attrdict(shape=(256,256),
-                tbase_den=20,
-                tbase_num=1)
+                    tbase_den=20,
+                    tbase_num=1)
 
-    enc = VpxEncodeStream(cfgd.shape)
+    enc = VpxEncodeStream(**cfgd)
     #while 1:
     #    enc.encgrey()
 
-    enc.outfp = open('out.vp8','wb')
-    enc.outfp.write(ivf_file_header(cfgd, len(fns)))
-    
+    enc.open('out.vp8')
+
+
     enc.decoder = VpxDecodeStream()
     enc.decoder.outdir = 'pngs'
 
